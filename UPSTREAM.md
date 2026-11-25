@@ -30,3 +30,9 @@
 ## 未分发的候选
 
 `cpp-coding-standards` 原候选为 [`affaan-m/ECC` 固定文件](https://github.com/affaan-m/ECC/blob/4adeee6732a12d1540f49a4d50a38ce8c97f9a53/skills/cpp-coding-standards/SKILL.md)。其声明派生自 [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)，内容含编号及规则措辞；未将 ECC 根 MIT 视为能够转授全部上游内容。本地同名条目根据目标工程的版次、接口和证据独立撰写，采用集合 MIT，不复制上述正文、编号表和示例。
+
+## 二版性能内容
+
+- `systems-performance` 和三份参考为原创，采用成员 MIT；[Google Benchmark](https://google.github.io/benchmark/user_guide.html)、[pyperf](https://pyperf.readthedocs.io/en/latest/run_benchmark.html)、[hyperfine](https://github.com/sharkdp/hyperfine)、[wrk2](https://github.com/giltene/wrk2) 和 [Fleetbench](https://github.com/google/fleetbench/blob/main/README.md) 用于核对测量边界；[Perfetto](https://perfetto.dev/docs/data-sources/cpu-scheduling)、[RTLA](https://docs.kernel.org/tools/rtla/rtla-timerlat.html) 和 [LLVM](https://llvm.org/docs/Remarks.html) 用于核对证据含义。没有复制其正文或代码，也没有新增依赖。
+- `linux-perf` 保持表中已固定的来源与 MIT；本版独立修订入口及证据参考，按 Linux 的 [`perf stat`](https://github.com/torvalds/linux/blob/master/tools/perf/Documentation/perf-stat.txt) 和 [`perf report`](https://github.com/torvalds/linux/blob/master/tools/perf/Documentation/perf-report.txt) 核对证据口径，不引入新的上游文件。`embedded-systems` 与 `zephyr-foundations` 的新时序参考独立撰写，随各自成员采用 MIT 与 Apache-2.0，已有许可不变；参考目标端口和 Zephyr 对应版本的原生文档。
+- 未分发 [Intel `performance-patterns`](https://github.com/intel/intel-performance-skills/tree/main/skills/performance-patterns)、[社区 Zephyr `power-performance`](https://github.com/beriberikix/zephyr-agent-skills/tree/main/skills/power-performance)、[`perf-labs/perf`](https://github.com/perf-labs/perf) 和 [VS Code `chat-perf`](https://github.com/microsoft/vscode/tree/main/.github/skills/chat-perf) 的入口、脚本或模板。只借鉴如何组织证据、按问题分流；不沿用厂商阈值、特定板卡配置、项目基准或自动触发链。

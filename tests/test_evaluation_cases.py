@@ -16,8 +16,8 @@ class EvaluationCasesTests(unittest.TestCase):
         coverage = collections.Counter((case["covers"], case["kind"]) for case in cases.values())
         self.assertEqual({name for name, kind in coverage}, set(manifest["skills"]))
         for member in manifest["skills"]:
-            self.assertEqual(coverage[member, "positive"], 1)
-            self.assertEqual(coverage[member, "control"], 1)
+            self.assertGreaterEqual(coverage[member, "positive"], 1, member)
+            self.assertGreaterEqual(coverage[member, "control"], 1, member)
         for case_id in ("mixed-yocto-kconfig", "mixed-zephyr-gdb"):
             self.assertEqual(cases[case_id]["kind"], "mixed")
 

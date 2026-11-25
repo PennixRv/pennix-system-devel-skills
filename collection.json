@@ -19,6 +19,7 @@
     "make": {"path": "skills/make", "license": "LICENSE"},
     "posix-shell-pro": {"path": "skills/posix-shell-pro", "license": "LICENSE"},
     "python-system-scripting": {"path": "skills/python-system-scripting", "license": "LICENSE"},
+    "systems-performance": {"path": "skills/systems-performance", "license": "LICENSE"},
     "yocto-recipe-development": {"path": "skills/yocto-recipe-development", "license": "LICENSE"},
     "zephyr-foundations": {"path": "skills/zephyr-foundations", "license": "LICENSE"}
   },
