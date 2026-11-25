@@ -1,6 +1,6 @@
 ---
 name: linux-driver-lifecycle
-description: 设计、实现或核对 Linux 驱动的 probe、失败回退、IRQ、延迟工作及解绑，也用于追查 Linux CONFIG 符号的最终值。若目标是审查已给出的内核差异是否引入回归，先按补丁审查处理。
+description: 设计、实现或核对 Linux 驱动的 probe、失败回退、IRQ、延迟工作及解绑，也用于依据目标内核树或配置证据追查 CONFIG 最终值。仅查 Yocto 片段归属或已给出的内核补丁回归时，不先走驱动生命周期。
 ---
 
 # Linux 驱动生命周期

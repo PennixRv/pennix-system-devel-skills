@@ -1,6 +1,6 @@
 ---
 name: cross-toolchain
-description: 诊断交叉编译命令或工件中的目标架构、sysroot、pkg-config、宿主库混入、目标链接及动态解释器问题；也用于核对现有 CMake、Meson 或 Yocto SDK 的目标选择。不把正常的宿主工具误判为目标依赖。
+description: 诊断交叉编译命令或工件中的目标架构、sysroot、pkg-config、宿主库混入、目标链接及动态解释器问题；也用于查工具链选错目标。不用于仅根据已有日志确认交叉测试是否运行。
 ---
 
 # 交叉工具链取证
