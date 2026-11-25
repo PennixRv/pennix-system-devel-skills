@@ -4,7 +4,7 @@
 import json
 import re
 import sys
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 import yaml
@@ -85,19 +85,31 @@ def verify(root):
             raise ValueError(f"{name}: invalid member identity")
         member = root / entry["path"]
         license_path = entry["license"]
-        if (not isinstance(license_path, str) or not license_path
-                or PurePosixPath(license_path).name != license_path
+        if (license_path != "LICENSE"
                 or not (member / license_path).is_file()
                 or not (member / license_path).read_bytes().strip()):
             raise ValueError(f"{name}: missing or invalid member license")
-        header = HEADER.match((member / "SKILL.md").read_text(encoding="utf-8"))
+        text = (member / "SKILL.md").read_text(encoding="utf-8")
+        header = HEADER.match(text)
         metadata = yaml.load(header[1], Loader=UniqueYaml) if header else None
         if (not isinstance(metadata, dict) or metadata.get("name") != name
                 or not isinstance(metadata.get("description"), str)
                 or not 0 < len(metadata["description"].strip()) <= 1024):
             raise ValueError(f"{name}: invalid frontmatter")
-        for source in member.rglob("*.md"):
-            check_links(source, member)
+        if not text[header.end():].strip():
+            raise ValueError(f"{name}: empty instructions")
+        for source in member.rglob("*"):
+            if not source.is_file():
+                continue
+            path = source.relative_to(member)
+            reference = (path.parts[0] == "references" and path.suffix == ".md"
+                         and path.name != "SKILL.md"
+                         and not any(part.startswith(".") for part in path.parts))
+            if source.stat().st_mode & 0o111 or (
+                    not reference and path.as_posix() not in {"SKILL.md", "LICENSE", "NOTICE", "NOTICE.md"}):
+                raise ValueError(f"{name}: unexpected member file {path}")
+            if path.suffix == ".md":
+                check_links(source, member)
     return len(manifest["skills"])
 
 

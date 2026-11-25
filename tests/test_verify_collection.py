@@ -66,3 +66,24 @@ class VerifyCollectionTests(unittest.TestCase):
         self.save_manifest()
         with self.assertRaisesRegex(ValueError, "command/materialization"):
             verify(self.root)
+
+    def test_first_release_does_not_ship_unreviewed_member_files(self):
+        for name in ("references/unlisted.py", "references/hidden/SKILL.md", "scripts/helper"):
+            with self.subTest(name=name):
+                path = self.member / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("not part of the documentation payload")
+                with self.assertRaisesRegex(ValueError, "unexpected member file"):
+                    verify(self.root)
+                path.unlink()
+
+    def test_license_must_be_separate_from_instructions(self):
+        self.manifest["skills"]["sample"]["license"] = "SKILL.md"
+        self.save_manifest()
+        with self.assertRaisesRegex(ValueError, "member license"):
+            verify(self.root)
+
+    def test_metadata_alone_does_not_make_a_skill(self):
+        self.skill.write_text("---\nname: sample\ndescription: No instructions\n---\n")
+        with self.assertRaisesRegex(ValueError, "empty instructions"):
+            verify(self.root)

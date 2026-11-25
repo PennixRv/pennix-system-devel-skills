@@ -1,6 +1,6 @@
 ---
 name: zephyr-foundations
-description: 设计、实现或诊断 Zephyr 应用与驱动的板卡、构建域、Devicetree、最终 Kconfig、设备实例和线程或中断行为；包括采用 Zephyr 的 SDK。仅因调试工件来自 Zephyr，不必先重查板卡和配置。
+description: 设计、实现、审查或排查 Zephyr 应用与驱动的设备初始化、并发和构建配置。用于需要核对板卡、构建域、Devicetree、Kconfig、设备实例或线程与中断行为的任务；不因调试工件来自 Zephyr 就优先查平台。
 ---
 
 # Zephyr 开发基础
