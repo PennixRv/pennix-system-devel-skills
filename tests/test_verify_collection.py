@@ -61,6 +61,17 @@ class VerifyCollectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate key: name"):
             verify(self.root)
 
+    def test_description_length_counts_the_decoded_value(self):
+        for description, valid in (("证" * 1024, True), (" " + "证" * 1024, False), (" ", False)):
+            with self.subTest(length=len(description), valid=valid):
+                value = json.dumps(description, ensure_ascii=False)
+                self.skill.write_text(f"---\nname: sample\ndescription: {value}\n---\nEvidence\n")
+                if valid:
+                    self.assertEqual(verify(self.root), 1)
+                else:
+                    with self.assertRaisesRegex(ValueError, "invalid frontmatter"):
+                        verify(self.root)
+
     def test_member_can_never_register_a_command(self):
         self.manifest["commands"] = {"sample": "sample/bin/main"}
         self.save_manifest()

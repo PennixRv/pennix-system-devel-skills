@@ -8,4 +8,6 @@
 
 本仓库维护源码，不负责直接安装。正式集成由 `pennix-lifecycle` 管理；本地候选不应手工复制到实际用户目录。成员只分发 `SKILL.md`、许可和声明文件及同目录下的 Markdown 参考，不分发命令或脚本。第三方来源、对应许可及改动见[成员来源](UPSTREAM.md)。
 
-维护时运行 `python3 -B scripts/verify_collection.py` 和 `python3 -B -m unittest discover -s tests -v`。行为场景及证据要求见[首版评测说明](evaluations/first-release.md)和[二版性能评测](evaluations/performance-v2.md)；静态检查和宿主发现不能代替行为结果。
+维护时运行 `python3 -B scripts/verify_collection.py` 和 `python3 -B -m unittest discover -s tests -v`。新增或移动参考时，确认对应 `SKILL.md` 在适用位置直接链接该参考，并说清何时需要读；能找到文件不等于知道何时读取。
+
+行为场景及证据要求见[首版评测说明](evaluations/first-release.md)、[二版性能评测](evaluations/performance-v2.md)和[二版编写审查评测](evaluations/authoring-review.md)。静态检查和宿主发现不能代替行为结果。

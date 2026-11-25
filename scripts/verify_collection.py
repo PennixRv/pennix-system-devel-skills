@@ -94,7 +94,8 @@ def verify(root):
         metadata = yaml.load(header[1], Loader=UniqueYaml) if header else None
         if (not isinstance(metadata, dict) or metadata.get("name") != name
                 or not isinstance(metadata.get("description"), str)
-                or not 0 < len(metadata["description"].strip()) <= 1024):
+                or not metadata["description"].strip()
+                or len(metadata["description"]) > 1024):
             raise ValueError(f"{name}: invalid frontmatter")
         if not text[header.end():].strip():
             raise ValueError(f"{name}: empty instructions")
