@@ -1,6 +1,6 @@
 ---
 name: linux-perf
-description: 解释 Linux perf stat、record 或 report 的事件、计数、样本、符号和调用链，或设计已明确选用 Linux perf 的最小取证。不用于工具未定的性能比较，也不用于 Zephyr 等同名工具。
+description: 解释 Linux perf 的计数、采样、符号或调用链，以及 perf_event_open 被拒绝、事件不可用等证据限制。只处理 Linux 的 perf 工具，不用于 Zephyr 串口 shell 的同名 perf record，也不接管未选工具的性能比较。
 ---
 
 # Linux `perf` 性能取证

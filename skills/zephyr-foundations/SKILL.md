@@ -1,6 +1,6 @@
 ---
 name: zephyr-foundations
-description: 设计、实现、审查或排查 Zephyr 的设备、构建域、Devicetree、Kconfig、线程和中断；也用于核对 Zephyr 平台的时序、栈、RAM 或 Flash 报告和 shell profiler。仅有 GDB 工件身份问题时不优先查平台。
+description: 设计、实现、审查或排查 Zephyr 的设备、构建域、Devicetree、Kconfig、线程和中断；也用于核对 Zephyr 的时序、栈、RAM 或 Flash 报告，以及由 Zephyr 串口 shell 采集的 perf record。仅有 GDB 工件身份问题时不优先查平台。
 ---
 
 # Zephyr 开发基础
