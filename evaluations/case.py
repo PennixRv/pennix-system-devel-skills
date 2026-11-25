@@ -8,10 +8,13 @@ from pathlib import Path
 
 def load_cases(root):
     entries = json.loads((root / "evaluations/cases.json").read_text(encoding="utf-8"))
+    if not isinstance(entries, list):
+        raise ValueError("evaluation cases must be a list")
     cases = {}
     fields = {"id", "covers", "kind", "request", "given", "expect", "forbid"}
     for entry in entries:
-        if (set(entry) != fields or any(not isinstance(v, str) or not v.strip() for v in entry.values())
+        if (not isinstance(entry, dict) or set(entry) != fields
+                or any(not isinstance(v, str) or not v.strip() for v in entry.values())
                 or entry["id"] in cases
                 or entry["kind"] not in {"positive", "control", "mixed", "transfer"}):
             raise ValueError(f"invalid evaluation case: {entry}")
@@ -39,7 +42,7 @@ def main():
         parser.error("unknown case ID")
     elif args.rubric:
         case = cases[args.case_id]
-        print(f"{case['covers']} / {case['kind']}\n预期：{case['expect']}\n禁止：{case['forbid']}")
+        print(f"覆盖条目：{case['covers']}（{case['kind']}）\n预期：{case['expect']}\n禁止：{case['forbid']}")
     else:
         print(render_prompt(cases[args.case_id]))
 

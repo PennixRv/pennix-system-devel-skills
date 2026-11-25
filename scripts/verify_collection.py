@@ -12,6 +12,7 @@ import yaml
 NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 HEADER = re.compile(r"\A---\n(.*?)\n---(?:\n|$)", re.S)
 LINK = re.compile(r"\]\(([^)\n]+)\)")
+REFERENCE = re.compile(r"^ {0,3}\[[^\]]+\]:[ \t]*(<[^>]+>|\S+)")
 
 
 def unique(pairs):
@@ -45,7 +46,10 @@ def check_links(source, member):
             continue
         if fence:
             continue
-        for raw in LINK.findall(re.sub(r"`+[^`]+`+", "", line)):
+        # shortcut: check file targets in the collection's Markdown conventions, not arbitrary HTML or anchors.
+        reference = REFERENCE.match(line)
+        targets = [reference[1]] if reference else LINK.findall(re.sub(r"`+[^`]+`+", "", line))
+        for raw in targets:
             link = raw.strip().strip("<>")
             target = urlsplit(link)
             if target.scheme == "https" and target.netloc:

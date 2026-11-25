@@ -1,6 +1,6 @@
 ---
 name: cmake
-description: 实现、审查或诊断 CMake 工程的目标接口、preset、生成器、工具链、缓存与构建目录。适用于含 CMakeLists.txt 或实际使用 CMake 的 C/C++ 工程，不把 Meson、手写 Make 或 BitBake 当作 CMake。
+description: 实现、审查或诊断 CMake 配置：目标接口、preset、生成器、缓存、工具链文件和构建目录。请求涉及 CMake 如何选中或生成配置时使用；不因仓库里有 CMakeLists.txt 就接管语言、测试或 ABI 问题。
 ---
 
 # CMake 工程

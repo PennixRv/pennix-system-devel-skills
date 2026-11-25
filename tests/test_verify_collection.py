@@ -45,6 +45,17 @@ class VerifyCollectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "out-of-member"):
             verify(self.root)
 
+    def test_reference_link_checks_the_target_not_its_optional_title(self):
+        with self.skill.open("a") as out:
+            out.write('\n[Details][detail]\n\n[detail]: <references/detail.md> "Read this"\n')
+        self.assertEqual(verify(self.root), 1)
+        (self.member / "references" / "detail.md").unlink()
+        self.skill.write_text(self.skill.read_text().replace(
+            "[Detail](references/detail.md)\n", ""
+        ))
+        with self.assertRaisesRegex(ValueError, "out-of-member"):
+            verify(self.root)
+
     def test_duplicate_yaml_is_rejected(self):
         self.skill.write_text("---\nname: wrong\nname: sample\ndescription: Duplicate\n---\n")
         with self.assertRaisesRegex(ValueError, "duplicate key: name"):

@@ -1,6 +1,7 @@
 import collections
 import json
 from pathlib import Path
+import tempfile
 import unittest
 
 from evaluations.case import load_cases, render_prompt
@@ -17,7 +18,16 @@ class EvaluationCasesTests(unittest.TestCase):
         for member in manifest["skills"]:
             self.assertEqual(coverage[member, "positive"], 1)
             self.assertEqual(coverage[member, "control"], 1)
-        self.assertEqual(sum(case["kind"] == "mixed" for case in cases.values()), 2)
+        for case_id in ("mixed-yocto-kconfig", "mixed-zephyr-gdb"):
+            self.assertEqual(cases[case_id]["kind"], "mixed")
+
+    def test_non_object_case_is_reported_as_invalid(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "evaluations").mkdir()
+            (root / "evaluations/cases.json").write_text("[null]")
+            with self.assertRaisesRegex(ValueError, "invalid evaluation case"):
+                load_cases(root)
 
     def test_model_prompt_does_not_include_rubric_fields(self):
         case = load_cases(ROOT)["bitbake-image"]

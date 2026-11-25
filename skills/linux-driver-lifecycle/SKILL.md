@@ -1,6 +1,6 @@
 ---
 name: linux-driver-lifecycle
-description: 设计、实现或核对 Linux 驱动的 probe、失败回退、IRQ 和延迟工作停机、解绑以及目标树 Kbuild/Kconfig。也用于追查 Linux CONFIG 符号在 defconfig、片段及最终配置中的取值。不要用于 Zephyr、完整内核变更审查或宿主模块安装。
+description: 设计、实现或核对 Linux 驱动的 probe、失败回退、IRQ、延迟工作及解绑，也用于追查 Linux CONFIG 符号的最终值。若目标是审查已给出的内核差异是否引入回归，先按补丁审查处理。
 ---
 
 # Linux 驱动生命周期
