@@ -4,6 +4,7 @@
   "skills": {
     "bash-defensive-patterns": {"path": "skills/bash-defensive-patterns", "license": "LICENSE"},
     "bitbake-debug": {"path": "skills/bitbake-debug", "license": "LICENSE"},
+    "c-cpp-runtime-diagnostics": {"path": "skills/c-cpp-runtime-diagnostics", "license": "LICENSE"},
     "c-systems": {"path": "skills/c-systems", "license": "LICENSE"},
     "cmake": {"path": "skills/cmake", "license": "LICENSE"},
     "cpp-coding-standards": {"path": "skills/cpp-coding-standards", "license": "LICENSE"},
@@ -11,17 +12,24 @@
     "cross-toolchain": {"path": "skills/cross-toolchain", "license": "LICENSE"},
     "elf-abi-compatibility": {"path": "skills/elf-abi-compatibility", "license": "LICENSE"},
     "embedded-systems": {"path": "skills/embedded-systems", "license": "LICENSE"},
+    "firmware-startup": {"path": "skills/firmware-startup", "license": "LICENSE"},
     "gdb": {"path": "skills/gdb", "license": "LICENSE"},
+    "linux-async-io": {"path": "skills/linux-async-io", "license": "LICENSE"},
     "linux-driver-lifecycle": {"path": "skills/linux-driver-lifecycle", "license": "LICENSE"},
     "linux-kernel-review": {"path": "skills/linux-kernel-review", "license": "LICENSE"},
+    "linux-kernel-testing": {"path": "skills/linux-kernel-testing", "license": "LICENSE"},
+    "linux-observability": {"path": "skills/linux-observability", "license": "LICENSE"},
     "linux-perf": {"path": "skills/linux-perf", "license": "LICENSE"},
     "linux-userspace-development": {"path": "skills/linux-userspace-development", "license": "LICENSE"},
     "make": {"path": "skills/make", "license": "LICENSE"},
+    "meson": {"path": "skills/meson", "license": "LICENSE"},
+    "native-linking": {"path": "skills/native-linking", "license": "LICENSE"},
     "posix-shell-pro": {"path": "skills/posix-shell-pro", "license": "LICENSE"},
     "python-system-scripting": {"path": "skills/python-system-scripting", "license": "LICENSE"},
     "systems-performance": {"path": "skills/systems-performance", "license": "LICENSE"},
     "yocto-recipe-development": {"path": "skills/yocto-recipe-development", "license": "LICENSE"},
-    "zephyr-foundations": {"path": "skills/zephyr-foundations", "license": "LICENSE"}
+    "zephyr-foundations": {"path": "skills/zephyr-foundations", "license": "LICENSE"},
+    "zephyr-testing": {"path": "skills/zephyr-testing", "license": "LICENSE"}
   },
   "commands": {},
   "materialized": {}

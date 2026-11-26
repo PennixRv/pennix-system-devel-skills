@@ -9,6 +9,8 @@ description: 设计、实现、审查或排查 Zephyr 的设备、构建域、De
 
 先确认实际 Zephyr 版本、目标板及修订、应用目录和构建域；按问题核对已有 `west`/CMake 参数、生成文件或日志，不默认某厂商 SDK、`build/` 路径、板卡或单域。
 
+只需解释 Twister 用例为何跳过或是否真的运行时，优先处理 `zephyr-testing` 的测试证据；只查域配置、生成的 Devicetree 或外设为何未出现时，仍从本入口取证。
+
 按问题选择检查项，不必逐一执行：
 
 1. **区分硬件描述和软件启用。** 用目标板、DTS binding、活动 overlay 与生成后的 DTS 解释硬件；另用最终 Kconfig 和构建规则证明驱动或功能编入。对设备实例、设备树序号、GPIO/I2C/SPI 或 `CONFIG_*` 未带入，读[设备与配置证据](references/device-and-config.md)。

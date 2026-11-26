@@ -19,6 +19,7 @@
 | --- | --- | --- |
 | `cpp-testing` | `affaan-m/ECC` `4adeee6732a12d1540f49a4d50a38ce8c97f9a53`，`skills/cpp-testing/SKILL.md`，MIT。 | 接入已有测试夹具和 CTest；不复制联网下载框架的 quickstart；补交叉发现和运行边界。`references/failure-paths.md` 按本文测试边界和 SQLite 先例独立写作。 |
 | `cmake`、`make`、`cross-toolchain`、`gdb` | `mohitmishra786/low-level-dev-skills` `18f29518a47fda070e6ec1268cb577692fae9a10`，`skills/build-systems/cmake/SKILL.md`、`skills/build-systems/make/SKILL.md`、`skills/compilers/cross-gcc/SKILL.md`、`skills/debuggers/gdb/SKILL.md`，MIT。 | 保留目标/preset、规则和 depfile、三元组/sysroot、符号和回溯的取证顺序；不引入安装、CMake 最低版本、全量构建、QEMU、新符号重编或默认附加。两份本地参考只补 Ninja 和交叉配置边界。 |
+| `meson` | `mohitmishra786/low-level-dev-skills` `18f29518a47fda070e6ec1268cb577692fae9a10`，`skills/build-systems/meson/SKILL.md`，MIT（版权 `2026 chessMan`）。 | 只适配机器文件、依赖与测试执行器的判断顺序；以 Meson 官方对应接口检查。省略 wrap 下载、脚本、示例工程与默认执行。 |
 | `bash-defensive-patterns` | `wshobson/agents` `c96b5f6552dba32e4492307493ee613581430715`，`plugins/shell-scripting/skills/bash-defensive-patterns/SKILL.md`、同目录 `references/details.md`，MIT。 | 保留参数、失败与临时物清理；不强制严格模式或 Bash 迁移。`references/failure-and-cleanup.md` 适配其中错误与清理模式。 |
 | `elf-abi-compatibility` | `jiying2007/agent-dev-kit` `c030a8e147441799b458f5310107124e2ce8816f`，`skills/adk-component-api-stability/SKILL.md`，MIT。 | 保留旧消费者与三层证据；不依赖 ADK 或默认运行示例，ABI 工具用法按目标版本引用。 |
 | `embedded-systems` | `Jeffallan/claude-skills` `d98d06edb54c25cfb94017c0ef830342a34a43ba`，`plugin/skills/embedded-systems/SKILL.md`，MIT。 | 收窄到裸机和 FreeRTOS；不夹带芯片初始化模板，不把 `volatile` 当同步或假定看门狗和板卡量测。 |
@@ -36,3 +37,14 @@
 - `systems-performance` 和三份参考为原创，采用成员 MIT；[Google Benchmark](https://google.github.io/benchmark/user_guide.html)、[pyperf](https://pyperf.readthedocs.io/en/latest/run_benchmark.html)、[hyperfine](https://github.com/sharkdp/hyperfine)、[wrk2](https://github.com/giltene/wrk2) 和 [Fleetbench](https://github.com/google/fleetbench/blob/main/README.md) 用于核对测量边界；[Perfetto](https://perfetto.dev/docs/data-sources/cpu-scheduling)、[RTLA](https://docs.kernel.org/tools/rtla/rtla-timerlat.html) 和 [LLVM](https://llvm.org/docs/Remarks.html) 用于核对证据含义。没有复制其正文或代码，也没有新增依赖。
 - `linux-perf` 保持表中已固定的来源与 MIT；本版独立修订入口及证据参考，按 Linux 的 [`perf stat`](https://github.com/torvalds/linux/blob/master/tools/perf/Documentation/perf-stat.txt) 和 [`perf report`](https://github.com/torvalds/linux/blob/master/tools/perf/Documentation/perf-report.txt) 核对证据口径，不引入新的上游文件。`embedded-systems` 与 `zephyr-foundations` 的新时序参考独立撰写，随各自成员采用 MIT 与 Apache-2.0，已有许可不变；参考目标端口和 Zephyr 对应版本的原生文档。
 - 未分发 [Intel `performance-patterns`](https://github.com/intel/intel-performance-skills/tree/main/skills/performance-patterns)、[社区 Zephyr `power-performance`](https://github.com/beriberikix/zephyr-agent-skills/tree/main/skills/power-performance)、[`perf-labs/perf`](https://github.com/perf-labs/perf) 和 [VS Code `chat-perf`](https://github.com/microsoft/vscode/tree/main/.github/skills/chat-perf) 的入口、脚本或模板。只借鉴如何组织证据、按问题分流；不沿用厂商阈值、特定板卡配置、项目基准或自动触发链。
+
+## 链接、运行时与目标验证扩充
+
+除表中 `meson` 的适配，其余新增入口及三份新增参考均独立撰写，不分发上游正文、脚本和示例。
+
+| 本地内容 | 调研对象与适用边界 |
+| --- | --- |
+| `native-linking`、`gdb` 离线参考 | `low-level-dev-skills@18f29518a47fda070e6ec1268cb577692fae9a10` 的 `binaries/{linkers-lto,elf-inspection,dynamic-linking}` 与 `debuggers/{core-dumps,debug-optimized-builds,dwarf-debug-format}` 仅作主题比较；按 GNU ld/GDB 手册核对实际接口，不采用修改 core 策略或对未知工件执行 `ldd` 的示例。 |
+| `c-cpp-runtime-diagnostics`、`linux-observability` | 该固定提交的 `runtimes/{sanitizers,binary-hardening}`、`profilers/{valgrind,strace-ltrace,tracing-profilers}`、`observability/ebpf` 提供分类；以 Clang、Linux libbpf、Perfetto 和相应工具文档核对证据，不复用探针和采集脚本。 |
+| `linux-kernel-testing`、`zephyr-testing`、`firmware-startup` | 对比该固定提交的 `kernel/kernel-testing`、`qemu/qemu-embedded-simulation`、`baremetal/baremetal-startup` 和 `embedded/linker-scripts`，及已有 Zephyr 社区测试入口；按 Linux、Zephyr、QEMU、Renode 和目标工具链正式文档区分覆盖，不复制实板地址、权限或启动命令。 |
+| `linux-async-io` | 对比该固定提交的 `async-io/{io-uring,af-xdp,dpdk}`；按 liburing 手册核对原请求和取消的独立完成，不引入内核参数修改或用户态网络框架。 |

@@ -10,3 +10,5 @@
 | Python、shell 或外部命令显慢 | 分开进程内阶段、子进程启动与等待、转换或 I/O，以及全命令时间。父进程阻塞时长不是子进程 CPU 时间。选最能区分这些阶段的已有记录；不因一个外部命令占时而重写语言。 |
 
 编译器诊断用于解释编译决策。报告消失不等于执行了向量化；汇编改变不等于目标负载变快。SIMD 先确认目标 ISA、回退、别名、尾部输入及数值语义；LTO 先核对工具链和链接边界；PGO 区分训练与验证负载并核对工件。只在已有证据足以支撑时选相应路线，保持输出及错误语义，再复测目标指标。按实际工具链查 [GCC 开发者选项](https://gcc.gnu.org/onlinedocs/gcc/Developer-Options.html)、[LLVM 优化诊断](https://llvm.org/docs/Remarks.html)或 [Clang PGO](https://clang.llvm.org/docs/UsersManual.html#profile-guided-optimization)。
+
+分析内存成本时，区分分配次数与总分配量、同时存活量、峰值常驻内存；在同一工作量、阶段和采样方式下比较。怀疑布局或 NUMA 导致退化时，先核对线程／内存放置和已知访存证据，不从单项缓存计数直接推断远端访问。若依赖埋点或分配追踪，记录采集扰动，并用有、无采集的对照确认结论是否保持。

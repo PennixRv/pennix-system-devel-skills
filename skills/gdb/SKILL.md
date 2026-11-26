@@ -11,4 +11,4 @@ description: 用 GDB 回溯、core、调试文件或已获准的目标会话定�
 2. **缩小到实际线程和帧。** 根据现成 backtrace 定位失败处和调用者，核对线程、栈帧、参数与对象状态。优化下的局部变量不可用、内联和错符号可能造成误读；不是“看不见”就等同于“没执行”。
 3. **只做能区分解释的下一步。** break、watch、运行、记录重放或远程源路径映射各自有前提与副作用。未明确允许实际执行时，只提出必要的单步取证。缺目标、符号或权限即标注未验证，不输出确定根因。
 
-需要核对符号定位时查 [GDB 独立调试文件](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Separate-Debug-Files.html)，需要判断脚本边界查 [自动加载保护](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Auto_002dloading-safe-path.html)。
+已有 core、拆分符号或优化帧难以解释时，读[发行构建的离线取证](references/release-debug-info.md)。入口安全细节查 [自动加载保护](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Auto_002dloading-safe-path.html)。
