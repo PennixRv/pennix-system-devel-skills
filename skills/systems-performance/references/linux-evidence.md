@@ -10,4 +10,6 @@
 | Linux timerlat 的 IRQ 与线程值分离 | 先确认 CPU、样本及共同起点。两个累计值的差是两个记录点间隔，不是 IRQ handler 执行时间，也不能单独区分 IRQ 后处理、抢占或调度；只对齐必要事件，不以最大观察值证明上界。 |
 | 分配热点、内存增长或回收干扰 | 分开分配频次与字节、仍存活的堆、进程驻留内存；对齐负载阶段和堆生命周期。单个分配栈、RSS 增加或缺页次数不能独自证明泄漏。 |
 
+存活堆平稳而 RSS 和内存压力一起增加时，优先在同一阶段核对进程映射的驻留构成与分配器保留页；再用同一主机或 cgroup 的压力数据区分回收是否拖慢任务。压力反映等待，不指认哪个进程持有页；先核对指标范围，不用系统压力替代单进程归因。指标语义见 [Linux PSI 文档](https://docs.kernel.org/accounting/psi.html)。
+
 报告占比或延迟前核对采集范围、时钟、事件丢失及工件。需补观测时先说明假设、范围、时间与退出条件，优先用现有且获准的最小入口。不默认启用追踪、改内核或使用全系统采样。按目标版本参考 [Perfetto 调度事件](https://perfetto.dev/docs/data-sources/cpu-scheduling)、[Linux delay accounting](https://docs.kernel.org/accounting/delay-accounting.html) 与 [RTLA timerlat](https://docs.kernel.org/tools/rtla/rtla-timerlat.html)。
