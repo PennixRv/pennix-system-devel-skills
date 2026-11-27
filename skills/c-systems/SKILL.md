@@ -14,4 +14,4 @@ description: 设计、实现或审查纯 C 系统代码的对象所有权、长�
 
 输出最小已证实问题或实现建议，并标注所有权、边界和失败后的状态。需要详细规则可按目标 C 版次核对 [SEI CERT C](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard)；目标工程的 API 和编译条件优先。
 
-若结论依赖编译器告警或静态分析，先固定实际目标、展开的宏与编译选项，确认告警对应这条真实路径；零告警不是对象边界证明。有实际插桩证据时，才按需用 `c-cpp-runtime-diagnostics` 判读运行覆盖。
+若结论依赖编译器告警或静态分析，先固定实际目标、展开的宏与编译选项，确认告警对应这条真实路径。对比宿主与目标报告、追查选错编译数据库或解释零告警时，读[目标静态分析取证](references/target-static-analysis.md)。有实际插桩证据时，才按需用 `c-cpp-runtime-diagnostics` 判读运行覆盖。
